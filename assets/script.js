@@ -1,27 +1,23 @@
-const baseURL =
-  "https://testeapielgeladon.herokuapp.com/paletas" ||
-  "http://localhost:3000/paletas";
+async function listarTodasAsPaletas() {
+  const resposta = await fetch("http://localhost:3000/paletas/listar-todas");
 
-async function getPaletas() {
-  const response = await fetch(`${baseURL}/listar-todas`);
+  const paletas = await resposta.json();
 
-  const paletas = await response.json();
-
-  paletas.forEach((paleta) => {
-    document.getElementById("PaletaList").insertAdjacentHTML(
+  paletas.forEach((elemento) => {
+    document.getElementById("paletaList").insertAdjacentHTML(
       "beforeend",
       `
         <div class="PaletaListaItem">
-            <div>
-                <div class="PaletaListaItem__sabor">${paleta.sabor}</div>
-                <div class="PaletaListaItem__preco">R$ ${paleta.preco},00</div>
-                <div class="PaletaListaItem__descricao">${paleta.descricao}</div>
-            </div>
-            <img class="PaletaListaItem__foto" src="${paleta.foto}"/>
+          <div>
+            <div class="PaletaListaItem__sabor">${elemento.sabor}</div>
+            <div class="PaletaListaItem__preco">R$ ${elemento.preco}</div>
+            <div class="PaletaListaItem__descricao">${elemento.descricao}</div>
+          </div>
+          <img class="PaletaListaItem__foto" src="./${elemento.foto}" alt="Paleta de Doce de Leite" />
         </div>
-        `
+      `
     );
   });
 }
 
-getPaletas();
+listarTodasAsPaletas();
