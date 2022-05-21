@@ -108,7 +108,7 @@ const showPaletaID = async () => {
 
   if (paleta === false) {
     document.getElementById("paletaPesquisada").innerHTML = `
-      <p class="NotPaleta">Paleta não encontrada</p>
+      <p class="NotPaleta">Nenhuma Paleta encontrada</p>
     `;
   } else {
     document.getElementById("paletaPesquisada").innerHTML = `
