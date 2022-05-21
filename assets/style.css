@@ -80,6 +80,8 @@ html {
   width: 315px;
   display: flex;
   justify-content: space-around;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .PaletaCardItem {
@@ -123,4 +125,79 @@ html {
 .PaletaListaItem__foto {
   height: 150px;
   margin-right: -60px;
+}
+
+.Header {
+  width: calc(80vw - 60px);
+  height: 12vh;
+  align-items: center;
+  padding: 0 10vw;
+}
+
+.Header > .Header__container {
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header > .Header__container > div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.Header > .Header__container > div > img {
+  position: absolute;
+}
+
+.Header > .Header__container > div > h1 {
+  background-color: #ffffff4d;
+  margin-left: 35px;
+  border-radius: 6px;
+  font-size: 32px;
+  padding-right: 5vw;
+  padding-left: 20px;
+}
+
+.NotPaleta {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.PesquisarPaleta {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.PesquisarPaleta > h2 {
+  text-align: center;
+}
+
+.PesquisarPaleta > input {
+  outline: 0;
+  width: 300px;
+  padding: 5px;
+  border: none;
+  border-radius: 6px;
+}
+
+.PesquisarPaleta > button {
+  padding: 5px;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.PesquisarPaleta > button:hover {
+  background-color: black;
+  color: #fff;
 }
