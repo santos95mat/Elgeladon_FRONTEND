@@ -28,4 +28,6 @@ Para esta aplicação foi desenvolvida uma página que recebe os dados de [Monke
 
 ## Link for app
 
-<a href="https://elgeladon-frontend.vercel.app">FRONTEND_ELGELADON</a>
+<a href="https://elgeladon-frontend.vercel.app">
+    <img width="64px" src="https://github.com/santos95mat/Elgeladon_FRONTEND/blob/main/assets/icons/logo.svg" />
+</a>
