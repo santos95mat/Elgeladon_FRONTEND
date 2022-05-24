@@ -1,7 +1,7 @@
 // Variaveis auxiliares
 
 const baseURL =
-  "https://testeapielgeladon.herokuapp.com/paletas" ||
+  "https://elgeladon-api-blue.herokuapp.com/paletas" ||
   "http://localhost:3000/paletas";
 
 // Requisições
