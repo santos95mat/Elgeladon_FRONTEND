@@ -1,14 +1,14 @@
 // Variaveis auxiliares
 
-const baseURL =
-  "https://elgeladon-api-blue.herokuapp.com/paletas" ||
-  "http://localhost:3000/paletas";
+const baseURL = "http://localhost:3000/paletas";
+let savePaletas = [];
 
 // Requisições
 
 const getPaletas = async () => {
   const resposta = await fetch(`${baseURL}/listar-todas`);
   const paletas = await resposta.json();
+  savePaletas = paletas;
 
   return paletas;
 };
@@ -23,11 +23,11 @@ const getPaletaID = async (id) => {
 
   return paleta;
 };
-const createPaleta = async (sabor, descricao, rota, preco) => {
+const createPaleta = async (sabor, descricao, foto, preco) => {
   const paleta = {
     sabor,
     descricao,
-    rota,
+    foto,
     preco,
   };
 
@@ -44,16 +44,16 @@ const createPaleta = async (sabor, descricao, rota, preco) => {
 
   return novaPaleta;
 };
-const updatePaleta = async (id, sabor, descricao, rota, preco) => {
+const updatePaleta = async (id, sabor, descricao, foto, preco) => {
   const paleta = {
     id,
     sabor,
     descricao,
-    rota,
+    foto,
     preco,
   };
 
-  const resposta = await fetch(`${baseURL}//atualizar-paleta/${id}`, {
+  const resposta = await fetch(`${baseURL}/atualizar-paleta/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -84,6 +84,8 @@ const deletePaleta = async (id) => {
 const showPaletas = async () => {
   const paletas = await getPaletas();
 
+  document.getElementById("paletaList").innerHTML = ``;
+
   paletas.forEach((paleta) => {
     document.getElementById("paletaList").insertAdjacentHTML(
       "beforeend",
@@ -93,6 +95,14 @@ const showPaletas = async () => {
             <h4 class="PaletaListaItem__sabor">${paleta.sabor}</h4>
             <span class="PaletaListaItem__preco">R$${paleta.preco},00</span>
             <p class="PaletaListaItem__descricao">${paleta.descricao}</p>
+            <div class="button">
+              <button class="btnEdit btn" onclick="modalEditar('${paleta._id}')">
+                <img src="./assets/icons/edit.png" alt="">
+              </button>
+              <button class="btnDel btn" onclick="delPaleta('${paleta._id}')">
+                <img src="./assets/icons/bin.png" alt="">
+              </button>
+            </div>
           </div>
           <img class="PaletaListaItem__foto" src="./${paleta.foto}" alt="Paleta sabor ${paleta.sabor}" />
         </div>
@@ -102,15 +112,19 @@ const showPaletas = async () => {
 };
 const showPaletaID = async () => {
   const input = document.getElementById("inputIdPaleta");
-  const id = input.value;
+  const sabor = input.value;
 
-  const paleta = await getPaletaID(id);
+  const paletaSelecionada = savePaletas.find((elem) => elem.sabor === sabor);
 
-  if (paleta === false) {
+  if (paletaSelecionada === undefined) {
     document.getElementById("paletaPesquisada").innerHTML = `
-      <p class="NotPaleta">Nenhuma Paleta encontrada</p>
-    `;
+    <p class="NotPaleta">Nenhuma Paleta encontrada</p>
+  `;
   } else {
+    const id = paletaSelecionada._id;
+
+    const paleta = await getPaletaID(id);
+
     document.getElementById("paletaPesquisada").innerHTML = `
       <div class="PaletaListaItem">
         <div>
@@ -123,5 +137,81 @@ const showPaletaID = async () => {
     `;
   }
 };
+const delPaleta = async (id) => {
+  await deletePaleta(id);
+  await showPaletas();
+};
+const editarPaleta = async (id) => {
+  const sabor = document.getElementById("sabor").value;
+  const preco = document.getElementById("preco").value;
+  const descricao = document.getElementById("descricao").value;
+  const foto = document.getElementById("foto").value;
 
+  const paleta = savePaletas.find((elemento) => elemento.sabor === sabor);
+
+  if (paleta) {
+    alert("Paleta ja existe");
+    window.location.reload();
+  } else {
+    await updatePaleta(id, sabor, descricao, foto, preco);
+    modalEditar();
+    window.location.reload();
+  }
+};
+const modalEditar = (id) => {
+  const display = document.getElementById("absolute");
+
+  if (display.style.display === "") {
+    document.getElementById("absolute").style.display = "flex";
+    document.getElementById("modalForm").insertAdjacentHTML(
+      "beforeend",
+      `
+        <button onclick="editarPaleta('${id}')">Editar</button>
+      `
+    );
+
+    const paleta = savePaletas.find((elemento) => elemento._id === id);
+
+    document.getElementById("modalTitulo").innerText = paleta.sabor;
+    document.getElementById("sabor").value = paleta.sabor;
+    document.getElementById("preco").value = paleta.preco;
+    document.getElementById("descricao").value = paleta.descricao;
+    document.getElementById("foto").value = paleta.foto;
+  } else {
+    display.style.display = "none";
+  }
+};
+const criarPaleta = async () => {
+  const sabor = document.getElementById("sabor").value;
+  const preco = document.getElementById("preco").value;
+  const descricao = document.getElementById("descricao").value;
+  const foto = document.getElementById("foto").value;
+
+  const paleta = savePaletas.find((elemento) => elemento.sabor === sabor);
+
+  if (paleta) {
+    alert("Paleta ja existe");
+    window.location.reload();
+  } else {
+    await createPaleta(sabor, descricao, foto, preco);
+    modalCriar();
+    window.location.reload();
+  }
+};
+const modalCriar = () => {
+  const display = document.getElementById("absolute");
+
+  if (display.style.display === "") {
+    document.getElementById("absolute").style.display = "flex";
+    document.getElementById("modalTitulo").innerText = "Criar Paleta";
+    document.getElementById("modalForm").insertAdjacentHTML(
+      "beforeend",
+      `
+        <button onclick="criarPaleta()">Criar</button>
+      `
+    );
+  } else {
+    display.style.display = "none";
+  }
+};
 showPaletas();

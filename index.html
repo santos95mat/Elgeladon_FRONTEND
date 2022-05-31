@@ -9,31 +9,80 @@
     <link rel="shortcut icon" href="./assets/icons/logo.svg" />
   </head>
   <body>
+    <div id="absolute">
+      <div class="absolute"></div>
+      <div class="absolute2">
+        <div id="modalForm">
+          <h2 id="modalTitulo"></h2>
+          <input
+            required
+            name="sabor"
+            id="sabor"
+            type="text"
+            placeholder="Sabor"
+          />
+          <input
+            required
+            name="preco"
+            id="preco"
+            type="number"
+            placeholder="Preço"
+          />
+          <input
+            required
+            name="descricao"
+            id="descricao"
+            type="text"
+            placeholder="Descrição"
+          />
+          <input
+            required
+            name="foto"
+            id="foto"
+            type="text"
+            placeholder="Foto"
+          />
+        </div>
+      </div>
+    </div>
+
     <div class="Home">
       <header class="Header">
         <div class="Header__container">
-          <div>
+          <div class="titulo">
             <img src="./assets/icons/logo.svg" width="60px" />
             <h1>El Geladon</h1>
           </div>
-          <img src="./assets/icons/sacola.svg" width="40px" />
+          <div class="imgHeader">
+            <img src="./assets/icons/sacola.svg" width="32px" />
+            <img
+              onclick="modalCriar()"
+              src="./assets/icons/add.png"
+              width="32px"
+            />
+          </div>
         </div>
       </header>
       <div class="PesquisarPaleta">
         <h2>Pesquisar Paleta</h2>
-        <input
-          type="number"
-          id="inputIdPaleta"
-          placeholder="Digite o ID da paleta e clique em escolher"
-        />
-        <button onclick="showPaletaID()">Escolher</button>
+        <div>
+          <input
+            type="text"
+            id="inputIdPaleta"
+            placeholder="Digite o sabor da paleta"
+          />
+          <button onclick="showPaletaID()">
+            <img src="./assets/icons/search.png" width="16px" />
+          </button>
+        </div>
       </div>
       <div class="PaletaPesquisada" id="paletaPesquisada"></div>
-      <h2>Paletas Disponíveis:</h2>
+      <h2>Paletas Disponíveis</h2>
       <div class="Home__container">
         <div class="PaletaLista" id="paletaList"></div>
       </div>
     </div>
+
     <script src="./assets/script.js"></script>
   </body>
 </html>
