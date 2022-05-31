@@ -2,7 +2,7 @@
 
 #### Página para fins de aprendizagem
 
-#### Primeiro projeto do Módulo 3 BlueEdTech
+#### Segundo projeto do Módulo 3 BlueEdTech
 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?logo=css3&logoColor=white&style=plastic)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?logo=html5&logoColor=white&style=plastic)
@@ -10,7 +10,7 @@
 
 ## FrontEnd HTML/CSS/JSVanilla
 
-Este é o primeiro projeto do módulo três do curso de Desenvolvimento Full Stack da Blue Edtech.
+Este é o segundo projeto do módulo três do curso de Desenvolvimento Full Stack da Blue Edtech.
 
 Para esta aplicação foi desenvolvida uma página que recebe os dados de [MonkeyTech API Server](https://monkeytech.herokuapp.com/) usando HTML5, CSS3 e JS.
 
@@ -24,3 +24,6 @@ Para esta aplicação foi desenvolvida uma página que recebe os dados de [Monke
 - Frontend Vanilla com os recursos:
   - Read All
   - Read By Id
+  - Create
+  - Update
+  - Delete
