@@ -1,6 +1,6 @@
 // Variaveis auxiliares
 
-const baseURL = "http://localhost:3000/paletas";
+const baseURL = "https://api-elgeladon-mongo.herokuapp.com/paletas";
 let savePaletas = [];
 
 // Requisições
