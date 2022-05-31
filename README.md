@@ -12,7 +12,7 @@
 
 Este é o segundo projeto do módulo três do curso de Desenvolvimento Full Stack da Blue Edtech.
 
-Para esta aplicação foi desenvolvida uma página que recebe os dados de [MonkeyTech API Server](https://monkeytech.herokuapp.com/) usando HTML5, CSS3 e JS.
+Para esta aplicação foi desenvolvida uma página que recebe os dados de <a href="https://github.com/santos95mat/Elgeladon_API_MongoDB">Elgeladon_API_MongoDB</a> usando HTML5, CSS3 e JS.
 
 ### Observando os seguintes critérios:
 
