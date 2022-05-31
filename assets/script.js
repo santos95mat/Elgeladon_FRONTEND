@@ -154,32 +154,52 @@ const editarPaleta = async (id) => {
     window.location.reload();
   } else {
     await updatePaleta(id, sabor, descricao, foto, preco);
-    modalEditar();
     window.location.reload();
   }
 };
 const modalEditar = (id) => {
-  const display = document.getElementById("absolute");
+  document.getElementById("absolute").style.display = "flex";
+  document.getElementById("modalForm").innerHTML = `
+      <img onclick="fechaModal()" src="./assets/icons/remove.png" alt="" />
+      <h2 id="modalTitulo"></h2>
+      <input
+        required
+        name="sabor"
+        id="sabor"
+        type="text"
+        placeholder="Sabor"
+      />
+      <input
+        required
+        name="preco"
+        id="preco"
+        type="number"
+        placeholder="Preço"
+      />
+      <input
+        required
+        name="descricao"
+        id="descricao"
+        type="text"
+        placeholder="Descrição"
+      />
+      <input
+        required
+        name="foto"
+        id="foto"
+        type="text"
+        placeholder="Foto"
+      />
+      <button onclick="editarPaleta('${id}')">Editar</button>
+    `;
 
-  if (display.style.display === "") {
-    document.getElementById("absolute").style.display = "flex";
-    document.getElementById("modalForm").insertAdjacentHTML(
-      "beforeend",
-      `
-        <button onclick="editarPaleta('${id}')">Editar</button>
-      `
-    );
+  const paleta = savePaletas.find((elemento) => elemento._id === id);
 
-    const paleta = savePaletas.find((elemento) => elemento._id === id);
-
-    document.getElementById("modalTitulo").innerText = paleta.sabor;
-    document.getElementById("sabor").value = paleta.sabor;
-    document.getElementById("preco").value = paleta.preco;
-    document.getElementById("descricao").value = paleta.descricao;
-    document.getElementById("foto").value = paleta.foto;
-  } else {
-    display.style.display = "none";
-  }
+  document.getElementById("modalTitulo").innerText = paleta.sabor;
+  document.getElementById("sabor").value = paleta.sabor;
+  document.getElementById("preco").value = paleta.preco;
+  document.getElementById("descricao").value = paleta.descricao;
+  document.getElementById("foto").value = paleta.foto;
 };
 const criarPaleta = async () => {
   const sabor = document.getElementById("sabor").value;
@@ -194,24 +214,46 @@ const criarPaleta = async () => {
     window.location.reload();
   } else {
     await createPaleta(sabor, descricao, foto, preco);
-    modalCriar();
     window.location.reload();
   }
 };
 const modalCriar = () => {
-  const display = document.getElementById("absolute");
-
-  if (display.style.display === "") {
-    document.getElementById("absolute").style.display = "flex";
-    document.getElementById("modalTitulo").innerText = "Criar Paleta";
-    document.getElementById("modalForm").insertAdjacentHTML(
-      "beforeend",
-      `
-        <button onclick="criarPaleta()">Criar</button>
-      `
-    );
-  } else {
-    display.style.display = "none";
-  }
+  document.getElementById("absolute").style.display = "flex";
+  document.getElementById("modalForm").innerHTML = `
+    <img onclick="fechaModal()" src="./assets/icons/remove.png" alt="" />
+      <h2>Criar Paleta</h2>
+      <input
+        required
+        name="sabor"
+        id="sabor"
+        type="text"
+        placeholder="Sabor"
+      />
+      <input
+        required
+        name="preco"
+        id="preco"
+        type="number"
+        placeholder="Preço"
+      />
+      <input
+        required
+        name="descricao"
+        id="descricao"
+        type="text"
+        placeholder="Descrição"
+      />
+      <input
+        required
+        name="foto"
+        id="foto"
+        type="text"
+        placeholder="Foto"
+      />
+      <button onclick="criarPaleta()">Criar</button>
+    `;
+};
+const fechaModal = () => {
+  document.getElementById("absolute").style.display = "none";
 };
 showPaletas();

@@ -309,6 +309,7 @@ html {
 }
 
 #absolute .absolute2 div {
+  position: relative;
   width: 50vh;
   min-width: 320px;
   height: auto;
@@ -324,6 +325,13 @@ html {
     rgba(0, 212, 255, 0.5) 100%
   );
   border-radius: 6px;
+}
+
+#absolute .absolute2 div img {
+  cursor: pointer;
+  width: 24px;
+  position: absolute;
+  top: -32px;
 }
 
 #absolute .absolute2 div h2 {
