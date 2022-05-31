@@ -31,5 +31,5 @@ Para esta aplicação foi desenvolvida uma página que recebe os dados de <a hre
 ## Link para teste
 
 <a href="https://elgeladon-frontend.vercel.app/">
-  <img src="./assets/icons/logo.svg" />
+  <img width="128px" src="./assets/icons/logo.svg" />
 </a>
